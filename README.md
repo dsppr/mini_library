@@ -1,6 +1,6 @@
 # mini_library
 
-A new Flutter project.
+Mini Library adalah aplikasi perpustakaan digital berbasis Flutter. Aplikasi ini menyediakan fitur untuk menambah, mengedit, menghapus, dan membaca buku dengan dukungan database SQLite. Dibangun dengan prinsip Material Design dan menggunakan arsitektur MVVM.
 
 ## Getting Started
 
