@@ -14,7 +14,7 @@ class AddEditPage extends StatefulWidget {
 
 class AddEditPageState extends State<AddEditPage> {
   final _formKey = GlobalKey<FormState>();
-  String? _title, _author, _category, _status, _content;
+  String? _title, _author, _category, _content; //tambahkan _status nanti
 
   @override
   Widget build(BuildContext context) {

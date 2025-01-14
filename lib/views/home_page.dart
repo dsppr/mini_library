@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/buku_viewmodel.dart';
-import '../models/buku.dart';
 import '../views/detail_page.dart';
 import '../views/add_edit_page.dart';
 
