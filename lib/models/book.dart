@@ -1,39 +1,31 @@
 class Book {
-  final int? id;
+  final int id;
   final String title;
   final String author;
-  final String category;
-  final String status;
-  final String description;
+  final String coverImage;
 
-  Book({
-    this.id,
+  const Book({
+    required this.id,
     required this.title,
     required this.author,
-    required this.category,
-    required this.status,
-    required this.description,
+    required this.coverImage,
   });
+
+  factory Book.fromMap(Map<String, dynamic> map) {
+    return Book(
+      id: map['id'],
+      title: map['title'],
+      author: map['author'],
+      coverImage: map['coverImage'],
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'author': author,
-      'category': category,
-      'status': status,
-      'description': description,
+      'coverImage': coverImage,
     };
-  }
-
-  static Book fromMap(Map<String, dynamic> map) {
-    return Book(
-      id: map['id'],
-      title: map['title'],
-      author: map['author'],
-      category: map['category'],
-      status: map['status'],
-      description: map['description'],
-    );
   }
 }

@@ -16,6 +16,7 @@ dependencies:
   path: 1.9.0 # Helper library to manage file paths
   google_fonts: ^4.0.3 # For custom fonts
   fluttertoast: ^8.2.1 # For showing toast messages (e.g., success notifications)
+  image_picker: ^0.8.7+3
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ flutter:
   assets:
     - assets/images/ # Directory for book cover images
     - assets/fonts/ # Directory for custom fonts (optional)
+    - assets/databases/mini_library.db
 
   # Optionally define fonts
   fonts:
