@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.0 # State management for MVVM architecture
-  sqflite: ^2.0.0 # SQLite database for CRUD operations
-  path: ^1.8.0 # Helper library to manage file paths
+  sqflite: ^2.4.1 # SQLite database for CRUD operations
+  path: 1.9.0 # Helper library to manage file paths
   google_fonts: ^4.0.3 # For custom fonts
   fluttertoast: ^8.2.1 # For showing toast messages (e.g., success notifications)
 
