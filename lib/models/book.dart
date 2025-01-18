@@ -1,23 +1,20 @@
-class Buku {
+class Book {
   final int? id;
   final String title;
   final String author;
   final String category;
-  final String status; // Available or Borrowed
-  final String content;
-  final String? coverImage;
+  final String status;
+  final String description;
 
-  Buku({
+  Book({
     this.id,
     required this.title,
     required this.author,
     required this.category,
     required this.status,
-    required this.content,
-    this.coverImage,
+    required this.description,
   });
 
-  // Convert object to Map (for SQLite)
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -25,21 +22,18 @@ class Buku {
       'author': author,
       'category': category,
       'status': status,
-      'content': content,
-      'coverImage': coverImage,
+      'description': description,
     };
   }
 
-  // Convert Map to object
-  factory Buku.fromMap(Map<String, dynamic> map) {
-    return Buku(
+  static Book fromMap(Map<String, dynamic> map) {
+    return Book(
       id: map['id'],
       title: map['title'],
       author: map['author'],
       category: map['category'],
       status: map['status'],
-      content: map['content'],
-      coverImage: map['coverImage'],
+      description: map['description'],
     );
   }
 }

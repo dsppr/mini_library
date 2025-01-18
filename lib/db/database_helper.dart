@@ -1,7 +1,11 @@
-import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../models/buku.dart';
+
+// void printDatabasePath() async {
+//   String path = join(await getDatabasesPath(),
+//       'mini_library.db'); // Ganti 'my_database.db' dengan nama database Anda
+//   print('Database path: $path');
+// }
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
@@ -9,14 +13,12 @@ class DatabaseHelper {
 
   DatabaseHelper._init();
 
-  // Getter untuk mendapatkan instance database
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('library.db');
+    _database = await _initDB('mini_library.db');
     return _database!;
   }
 
-  // Inisialisasi database
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
@@ -28,58 +30,39 @@ class DatabaseHelper {
     );
   }
 
-  // Membuat tabel di database
   Future _createDB(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE books (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        author TEXT NOT NULL,
-        category TEXT NOT NULL,
-        status TEXT NOT NULL,
-        content TEXT NOT NULL,
-        coverImage TEXT
-      )
-    ''');
+    const bookTable = '''
+    CREATE TABLE books (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      author TEXT NOT NULL,
+      category TEXT,
+      status TEXT NOT NULL,
+      description TEXT
+    )
+    ''';
+    await db.execute(bookTable);
   }
 
-  // Fungsi untuk menambahkan data buku
-  Future<int> insertBook(Buku buku) async {
+  Future<int> insert(String table, Map<String, dynamic> values) async {
     final db = await instance.database;
-    return await db.insert('books', buku.toMap());
+    return await db.insert(table, values);
   }
 
-  // Fungsi untuk mengambil semua data buku
-  Future<List<Buku>> fetchBooks() async {
+  Future<List<Map<String, dynamic>>> queryAll(String table) async {
     final db = await instance.database;
-    final result = await db.query('books');
-    return result.map((map) => Buku.fromMap(map)).toList();
+    return await db.query(table);
   }
 
-  // Fungsi untuk memperbarui data buku
-  Future<int> updateBook(Buku buku) async {
+  Future<int> update(String table, Map<String, dynamic> values,
+      String whereClause, List whereArgs) async {
     final db = await instance.database;
-    return await db.update(
-      'books',
-      buku.toMap(),
-      where: 'id = ?',
-      whereArgs: [buku.id],
-    );
+    return await db.update(table, values,
+        where: whereClause, whereArgs: whereArgs);
   }
 
-  // Fungsi untuk menghapus data buku
-  Future<int> deleteBook(int id) async {
+  Future<int> delete(String table, String whereClause, List whereArgs) async {
     final db = await instance.database;
-    return await db.delete(
-      'books',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  // Menutup koneksi database
-  Future close() async {
-    final db = await instance.database;
-    db.close();
+    return await db.delete(table, where: whereClause, whereArgs: whereArgs);
   }
 }
