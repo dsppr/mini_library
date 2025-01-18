@@ -16,6 +16,7 @@ dependencies:
   path: 1.9.0 # Helper library to manage file paths
   google_fonts: ^4.0.3 # For custom fonts
   fluttertoast: ^8.2.1 # For showing toast messages (e.g., success notifications)
+  image_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:

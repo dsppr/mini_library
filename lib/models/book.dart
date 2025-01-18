@@ -5,6 +5,7 @@ class Book {
   final String category;
   final String status;
   final String description;
+  final String? cover; // Path gambar cover buku
 
   Book({
     this.id,
@@ -13,6 +14,7 @@ class Book {
     required this.category,
     required this.status,
     required this.description,
+    this.cover,
   });
 
   Map<String, dynamic> toMap() {
@@ -23,6 +25,7 @@ class Book {
       'category': category,
       'status': status,
       'description': description,
+      'cover': cover,
     };
   }
 
@@ -34,6 +37,7 @@ class Book {
       category: map['category'],
       status: map['status'],
       description: map['description'],
+      cover: map['cover'],
     );
   }
 }
